@@ -295,6 +295,19 @@ class Init extends React.Component {
                 </div>
                 <h1>Day {this.state.day}</h1>
                 <Grid grid={this.state.grid} />
+                <div>
+                    Each day:
+                    <lu>
+                        <li>
+                            A healthy person might get contaminated by its
+                            neighbors
+                        </li><li>
+                            A contaminated person might either recover or die
+                        </li><li>
+                            Vaccinated persons are not affected
+                        </li>
+                    </lu>
+                </div>
             </div>
         );
     }
