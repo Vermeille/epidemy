@@ -63,18 +63,21 @@ function update(grid, probs) {
                     let isCont = 1 - Math.pow(1 - probs.contamination, conts);
                     ng[i][j] =
                         Math.random() < isCont
-                            ? Status.Contaminated
-                            : Status.Healthy;
+                        ? Status.Contaminated
+                        : Status.Healthy;
                     break;
                 case Status.Contaminated:
-                    ng[i][j] =
-                        Math.random() < probs.remission
-                            ? Status.Vaxxed
-                            : Status.Contaminated;
-                    ng[i][j] =
-                        Math.random() < probs.death
-                            ? Status.Dead
-                            : Status.Contaminated;
+                    let rnd = Math.random();
+                    if (rnd < probs.remission) {
+                        ng[i][j] = Status.Vaxxed;
+                        break;
+                    }
+                    rnd -= probs.remission;
+                    if (rnd < probs.death) {
+                        ng[i][j] = Status.Dead;
+                        break;
+                    }
+                    ng[i][j] = grid[i][j];
                     break;
                 default:
                     ng[i][j] = grid[i][j];
